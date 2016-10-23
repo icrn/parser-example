@@ -33,7 +33,7 @@ public class JsonParse {
         for(int i=0;i<ch.length;i++){
             char temp = ch[i];
             if(!JInfo.isMark()&&temp == JsonValue.jsonListBegin.value()){
-                //
+
                 continue;
             }else if(!JInfo.isMark() && temp == JsonValue.jsonMapBegin.value()){
                 //
