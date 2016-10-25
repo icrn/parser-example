@@ -6,7 +6,7 @@ import java.util.Map;
 /**
  * Created by yan on 2016/10/24.
  */
-public class JObject {
+public class JObject implements Json {
 
     private Map<String, Value> map = new HashMap<>();
 

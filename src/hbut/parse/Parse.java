@@ -84,10 +84,10 @@ public class Parse {
         } else if (isPrimary()) {
             list = element(list);
         } else if (isToken(TokenType.START_OBJ)) {
-            list.add((Json) object());
+            list.add( object());
             while (isToken(TokenType.COMMA)) {
                 tokenizer.next(); //consume ','
-                list.add((Json) object());
+                list.add( object());
             }
         } else if (isToken(TokenType.END_ARRAY)) {
             tokenizer.next(); //consume ']'
@@ -99,9 +99,27 @@ public class Parse {
         return array;
     }
 
-    private List<Json> element(List<Json> list) {
-        return null;
+    private List<Json> element(List<Json> list) throws JsonParseException {
+        list.add(new Primary(tokenizer.next().getValue()));
+        if (isToken(TokenType.COMMA)) {
+            tokenizer.next(); //consume ','
+            if (isPrimary()) {
+                list = element(list);
+            } else if (isToken(TokenType.START_OBJ)) {
+                list.add(object());
+            } else if (isToken(TokenType.START_ARRAY)) {
+                list.add(array());
+            } else {
+                throw new JsonParseException("Invalid JSON input.");
+            }
+        } else if (isToken(TokenType.END_ARRAY)) {
+            return list;
+        } else {
+            throw new JsonParseException("Invalid JSON input.");
+        }
+        return list;
     }
+
 
     private boolean isPrimary() {
         TokenType type = tokenizer.peek(0).getType();
