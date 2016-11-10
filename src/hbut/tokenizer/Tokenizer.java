@@ -40,16 +40,15 @@ public class Tokenizer {
 
     private Token start() throws IOException, JsonParseException {
         c = '?';
-        Token token = null;
         do{
             c = read();
         }while (isSpace(c));
         if(isNull(c)){
             return new Token(TokenType.NULL,null);
         }else if(c == ','){
-            return new Token(TokenType.COMMA,',');
+            return new Token(TokenType.COMMA, ",");
         }else if(c == ':'){
-            return new Token(TokenType.COLON,':');
+            return new Token(TokenType.COLON, ":");
         }else if (c == '{') {
             return new Token(TokenType.START_OBJ, "{");
         } else if (c == '[') {
@@ -78,8 +77,97 @@ public class Tokenizer {
         return c >= '0' && c <= '9';
     }
 
-    private Token readNum(){
-        return null;
+    private Token readNum() throws IOException, JsonParseException {
+        StringBuilder sb = new StringBuilder();
+        int c = read();
+        if (c == '-') { //-
+            sb.append((char) c);
+            c = read();
+            if (c == '0') { //-0
+                sb.append((char) c);
+                numAppend(sb);
+
+            } else if (isDigitOne2Nine(c)) { //-digit1-9
+                do {
+                    sb.append((char) c);
+                    c = read();
+                } while (isDigit(c));
+                unread();
+                numAppend(sb);
+            } else {
+                throw new JsonParseException("- not followed by digit");
+            }
+        } else if (c == '0') { //0
+            sb.append((char) c);
+            numAppend(sb);
+        } else if (isDigitOne2Nine(c)) { //digit1-9
+            do {
+                sb.append((char) c);
+                c = read();
+            } while (isDigit(c));
+            unread();
+            numAppend(sb);
+        }
+        return new Token(TokenType.NUMBER, sb.toString()); //the value of 0 is null        return null;
+    }
+
+    private boolean isDigitOne2Nine(int c){
+        return c >= '1' && c <= '9';
+    }
+
+    private boolean isExp(int c) throws IOException {
+        return c == 'e' || c == 'E';
+    }
+
+    private void appendFrac(StringBuilder sb) throws IOException {
+        c = read();
+        while (isDigit(c)) {
+            sb.append((char) c);
+            c = read();
+        }
+    }
+
+    private void numAppend(StringBuilder sb) throws IOException, JsonParseException {
+        c = read();
+        if (c == '.') { //int frac
+            sb.append((char) c); //apppend '.'
+            appendFrac(sb);
+            if (isExp(c)) { //int frac exp
+                sb.append((char) c); //append 'e' or 'E';
+                appendExp(sb);
+            }
+
+        } else if (isExp(c)) { // int exp
+            sb.append((char) c); //append 'e' or 'E'
+            appendExp(sb);
+        } else {
+            unread();
+        }
+    }
+
+    private void appendExp(StringBuilder sb) throws IOException, JsonParseException {
+        int c = read();
+        if (c == '+' || c == '-') {
+            sb.append((char) c); //append '+' or '-'
+            c = read();
+            if (!isDigit(c)) {
+                throw new JsonParseException("e+(-) or E+(-) not followed by digit");
+            } else { //e+(-) digit
+                do {
+                    sb.append((char) c);
+                    c = read();
+                } while (isDigit(c));
+                unread();
+            }
+        } else if (!isDigit(c)) {
+            throw new JsonParseException("e or E not followed by + or - or digit.");
+        } else { //e digit
+            do {
+                sb.append((char) c);
+                c = read();
+            } while (isDigit(c));
+            unread();
+        }
     }
 
     private void unread() {
