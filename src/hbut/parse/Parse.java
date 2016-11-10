@@ -44,7 +44,7 @@ public class Parse {
 
     private Map<String, Value> key(Map<String, Value> map) throws JsonParseException {
         String key = tokenizer.next().getValue();
-        if(isToken(TokenType.COLON)){
+        if(!isToken(TokenType.COLON)){
             throw new JsonParseException("Invalid JSON object");
         }else {
             tokenizer.next();
