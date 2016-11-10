@@ -10,12 +10,8 @@ public class Token {
     private TokenType type;
 
     public Token(TokenType type,String value) {
-        this.value = value;
         this.type = type;
-    }
-
-    public Token(TokenType aNull, Object type) {
-
+        this.value = value;
     }
 
     public String getValue() {

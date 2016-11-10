@@ -24,12 +24,10 @@ public class Parse {
     }
 
     public static Object parseJSONObject(String jsonString) throws IOException, JsonParseException {
-
         Tokenizer tokenizer = new Tokenizer(new BufferedReader(new StringReader(jsonString)));
         tokenizer.tokenizer();
         Parse parser = new Parse(tokenizer);
-        parser.object();
-        return null;
+        return parser.object();
     }
 
     private JObject object() throws JsonParseException {
