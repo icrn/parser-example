@@ -1,4 +1,4 @@
-package hbut.tokenizer;
+package icrn.tokenizer;
 
 /**
  * Created by yan on 2016/10/24.

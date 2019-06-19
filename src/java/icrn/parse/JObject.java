@@ -1,4 +1,4 @@
-package hbut.parse;
+package icrn.parse;
 
 import java.util.HashMap;
 import java.util.Map;

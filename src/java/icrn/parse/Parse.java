@@ -1,8 +1,8 @@
-package hbut.parse;
+package icrn.parse;
 
-import hbut.exception.JsonParseException;
-import hbut.tokenizer.TokenType;
-import hbut.tokenizer.Tokenizer;
+import icrn.exception.JsonParseException;
+import icrn.tokenizer.TokenType;
+import icrn.tokenizer.Tokenizer;
 
 import java.io.BufferedReader;
 import java.io.IOException;

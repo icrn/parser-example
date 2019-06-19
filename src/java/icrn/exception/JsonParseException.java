@@ -1,4 +1,4 @@
-package hbut.exception;
+package icrn.exception;
 
 /**
  * Created by yan on 2016/10/24.

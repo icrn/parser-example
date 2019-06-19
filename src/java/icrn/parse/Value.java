@@ -1,4 +1,4 @@
-package hbut.parse;
+package icrn.parse;
 
 /**
  * Created by yan on 2016/10/24.

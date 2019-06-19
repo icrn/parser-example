@@ -1,6 +1,6 @@
-package hbut.tokenizer;
+package icrn.tokenizer;
 
-import hbut.exception.JsonParseException;
+import icrn.exception.JsonParseException;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -182,7 +182,7 @@ public class Tokenizer {
         StringBuffer sb = new StringBuffer();
         while (true) {
             c = read();
-            if (isEscape()) {    //ÅÐ¶ÏÊÇ·ñÎª\", \\, \/, \b, \f, \n, \t, \r.
+            if (isEscape()) {    //ï¿½Ð¶ï¿½ï¿½Ç·ï¿½Îª\", \\, \/, \b, \f, \n, \t, \r.
                 if (c == 'u') {
                     sb.append('\\' + (char) c);
                     for (int i = 0; i < 4; i++) {
