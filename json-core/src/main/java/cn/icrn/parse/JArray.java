@@ -1,4 +1,4 @@
-package icrn.parse;
+package cn.icrn.parse;
 
 import java.util.ArrayList;
 import java.util.List;

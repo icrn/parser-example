@@ -1,7 +1,7 @@
-package icrn;
+package cn.icrn;
 
-import icrn.exception.JsonParseException;
-import icrn.parse.Parse;
+import cn.icrn.exception.JsonParseException;
+import cn.icrn.parse.Parse;
 
 import java.io.IOException;
 

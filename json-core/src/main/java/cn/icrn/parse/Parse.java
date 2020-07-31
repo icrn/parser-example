@@ -1,8 +1,8 @@
-package icrn.parse;
+package cn.icrn.parse;
 
-import icrn.exception.JsonParseException;
-import icrn.tokenizer.TokenType;
-import icrn.tokenizer.Tokenizer;
+import cn.icrn.exception.JsonParseException;
+import cn.icrn.tokenizer.TokenType;
+import cn.icrn.tokenizer.Tokenizer;
 
 import java.io.BufferedReader;
 import java.io.IOException;

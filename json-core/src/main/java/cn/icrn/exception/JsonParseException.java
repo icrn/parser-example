@@ -1,4 +1,4 @@
-package icrn.exception;
+package cn.icrn.exception;
 
 /**
  * Created by yan on 2016/10/24.

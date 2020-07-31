@@ -1,4 +1,4 @@
-package icrn.parse;
+package cn.icrn.parse;
 
 /**
  * Created by yan on 2016/10/24.

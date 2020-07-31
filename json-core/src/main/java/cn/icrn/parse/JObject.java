@@ -1,4 +1,4 @@
-package icrn.parse;
+package cn.icrn.parse;
 
 import java.util.HashMap;
 import java.util.Map;
