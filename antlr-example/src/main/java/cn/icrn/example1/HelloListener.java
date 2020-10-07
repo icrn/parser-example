@@ -1,4 +1,4 @@
-// Generated from antlr-example/src/main/java/cn/icrn/example1/Hello.g4 by ANTLR 4.8
+// Generated from Hello.g4 by ANTLR 4.8
 import org.antlr.v4.runtime.tree.ParseTreeListener;
 
 /**
